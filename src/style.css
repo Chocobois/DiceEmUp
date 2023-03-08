@@ -10,13 +10,14 @@ html, body {
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 	position: relative;
-	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	background: #000;
+	background: black;
 	color: #eee;
-	/*font: caption;*/
 }
 
 canvas {
@@ -29,9 +30,15 @@ canvas {
 
 
 .fontPreloader {
-	position: absolute;
-	left: -1000px;
-	visibility: hidden;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: -10;
+	margin: auto;
+  font-family: Sans-Serif;
+  font-size: 2.5rem;
+  white-space: nowrap;
 }
 
 .fontGame	{ font-family: 'Fredoka One', serif; }
