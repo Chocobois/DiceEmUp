@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -33,11 +33,12 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
 
-      - uses: montudor/action-zip@v1
+      - uses: Zip game files
         with:
-          args: zip -qq -r FireAndDice.zip ./dist/FireAndDice
+          args: zip -qq -r FireAndDice-Release.zip ./FireAndDice
+          working-directory: ./dist
 
-      - uses: montudor/action-zip@v1
+      - uses: Zip web directory
         with:
           args: zip -qq -r game-web.zip ./public
 
@@ -49,5 +50,5 @@ jobs:
           prerelease: false
           title: "Fire and Dice latest build"
           files: |
-            FireAndDice.zip
+            FireAndDice-Release.zip
             game-web.zip
