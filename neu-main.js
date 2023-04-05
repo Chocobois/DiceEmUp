@@ -1,1 +1,0 @@
-"use strict";const NeutralinoLoad=()=>{Neutralino.init(),Neutralino.events.on("windowClose",(()=>{Neutralino.app.exit()}))};window.NL_TOKEN&&(Neutralino.init(),Neutralino.events.on("windowClose",(()=>{Neutralino.app.exit()})));
