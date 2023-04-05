@@ -1,4 +1,4 @@
-"use strict";
+import './neutralino';
 
 const NeutralinoLoad = () => {
     const onWindowClose = () => {

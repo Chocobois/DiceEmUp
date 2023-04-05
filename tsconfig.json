@@ -13,10 +13,11 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "strictPropertyInitialization": false,
+    "noEmit": true,
 
     "resolveJsonModule": true,
 
-    "moduleResolution": "node",
-    "lib": ["dom", "esnext"]
-  }
+    "moduleResolution": "node"
+  },
+  "include": ["src", "typings"]
 }
