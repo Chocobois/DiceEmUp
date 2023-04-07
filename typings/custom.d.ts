@@ -1,8 +1,0 @@
-declare module '*.png'
-declare module '*.jpg'
-declare module '*.jpeg'
-declare module '*.mp4'
-declare module '*.ogg'
-declare module '*.mp3'
-declare module '*.wav'
-declare module '*.json'
