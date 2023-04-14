@@ -220,7 +220,7 @@ export class MenuScene extends BaseScene {
 			this.isStarting = true;
 			if (this.musicTitle.seek < 16.520) {
 				this.musicTitle.setSeek(16.520);
-				this.musicTitle.setVolume(this.musicTitle.volume / 2);
+				// this.musicTitle.setVolume(this.musicTitle.volume / 2);
 			}
 			this.flash(3000, 0xFFFFFF, 0.6);
 
