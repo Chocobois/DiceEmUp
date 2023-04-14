@@ -106,7 +106,7 @@ export class GameoverScene extends BaseScene {
 
 		// Input
 
-		this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE).on('down', this.progress, this);
+		this.input.keyboard?.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE).on('down', this.progress, this);
 		this.input.on('pointerdown', (pointer) => {
 			if (pointer.button == 0 && !this.isStarting) {
 				this.progress();

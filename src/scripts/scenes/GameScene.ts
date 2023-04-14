@@ -41,6 +41,7 @@ export class GameScene extends BaseScene {
 	public attackButton: AttackButton;
 	public musicButton: MiniButton;
 	public audioButton: MiniButton;
+	public resetButton: MiniButton;
 
 	// UI texts
 	private ui: UI;
@@ -121,6 +122,14 @@ export class GameScene extends BaseScene {
 			this.audioButton.toggle();
 			this.sound.mute = !this.audioButton.active;
 		}, this);
+
+		// Temporary reset button
+		this.resetButton = new MiniButton(this, bsize, 0.8*bsize, 'reset');
+		this.resetButton.on('click', (active: boolean) => {
+			this.dragon.damage(10000000);
+		}, this);
+		this.resetButton.toggle();
+		this.resetButton.setAlpha(0.3);
 
 
 		// UI
@@ -206,6 +215,7 @@ export class GameScene extends BaseScene {
 		this.attackButton.update(timeMs, deltaMs);
 		this.musicButton.update(timeMs, deltaMs);
 		this.audioButton.update(timeMs, deltaMs);
+		this.resetButton.update(timeMs, deltaMs);
 		this.particles.update(timeMs/1000, deltaMs/1000);
 		this.ui.update(timeMs/1000, deltaMs/1000);
 		this.grid.update(timeMs/1000, deltaMs/1000);

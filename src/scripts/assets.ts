@@ -54,6 +54,7 @@ import attack_button from "/assets/images/ui/attack_button.png";
 import attack_button_fire from "/assets/images/ui/attack_button_fire.png";
 import music from "/assets/images/ui/music.png";
 import audio from "/assets/images/ui/audio.png";
+import reset from "/assets/images/ui/reset.png";
 import heart_1 from "/assets/images/ui/heart/heart_1.png";
 import heart_2 from "/assets/images/ui/heart/heart_2.png";
 import heart_3 from "/assets/images/ui/heart/heart_3.png";
@@ -92,6 +93,7 @@ const images: Asset[] = [
 	{ key: "heart_4",		path: heart_4 },
 	{ key: "heart_empty",	path: heart_empty },
 	{ key: "heart_full",	path: heart_full },
+	{ key: "reset", path: reset },
 
 	// Cover
 	{ key: "cover_background_orange",	path: cover_background_orange },

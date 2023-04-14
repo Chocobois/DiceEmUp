@@ -151,14 +151,14 @@ export class OverworldScene extends BaseScene {
 		}
 
 		// Skip
-		this.input.keyboard.on("keydown-ESC", () => {
+		this.input.keyboard?.on("keydown-ESC", () => {
 			this.skip();
 			if (this.level < 4) {
 				this.scene.start("GameScene", { level: this.level });
 			}
 		}, this);
 
-		this.input.keyboard.on("keydown-SPACE", this.skip, this);
+		this.input.keyboard?.on("keydown-SPACE", this.skip, this);
 		this.input.on('pointerdown', this.skip, this);
 	}
 
@@ -263,7 +263,7 @@ export class OverworldScene extends BaseScene {
 	skip() {
 		if (this.introPlaying) {
 			this.myTweens.forEach((tween: Phaser.Tweens.Tween) => {
-				tween.stop(1);
+				tween.stop();
 			});
 		}
 		else if (this.title.visible) {

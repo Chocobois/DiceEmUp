@@ -47,11 +47,11 @@ export class Dragon extends Phaser.GameObjects.Container {
 
 		this.sprite.play({ key: 'dragon_idle' });
 		this.sprite.on('animationcomplete', () => {
-			if (this.sprite.anims.currentAnim.key == 'dragon_prepare') {
+			if (this.sprite.anims.currentAnim?.key == 'dragon_prepare') {
 				this.emit('throw');
 				this.sprite.play({ key: 'dragon_throw' });
 			}
-			else if (this.sprite.anims.currentAnim.key == 'dragon_throw') {
+			else if (this.sprite.anims.currentAnim?.key == 'dragon_throw') {
 				this.sprite.play({ key: 'dragon_idle' });
 			}
 		});
