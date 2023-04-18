@@ -48,3 +48,20 @@ canvas {
        url('./fonts/fredoka-one-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('./fonts/fredoka-one-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
+
+vite-plugin-checker-error-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 60vh;
+  min-height: 30rem;
+  background-color: rgba(0,0,0,0.7);
+  overflow: auto;
+}
+
+@media (max-height: 30rem) {
+  vite-plugin-checker-error-overlay {
+    bottom: initial;
+    top: 0;
+  }
+}
