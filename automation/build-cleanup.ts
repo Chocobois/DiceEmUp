@@ -3,14 +3,16 @@ import { rimrafSync } from 'rimraf';
 import { writeFileSync } from 'fs';
 import { build_path, title_dashed } from './util/constants';
 
+const BuildCleanup = () => {
+	rimrafSync(build_path);
+	writeFileSync('./dist/meta.json', JSON.stringify({title: title_dashed}));
+}
+
 export default function buildCleanup() {
 	return {
 		name: 'build-cleanup',
 		apply: 'build',
 		enforce: 'post',
-		closeBundle: () => {
-			rimrafSync(build_path);
-			writeFileSync('./dist/meta.json', JSON.stringify({title_dashed}));
-		},
+		closeBundle: BuildCleanup,
 	} as PluginOption;
 }
