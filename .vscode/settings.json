@@ -1,4 +1,5 @@
 {
+	"git.pullTags": false,
   "files.trimTrailingWhitespace": true,
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "eslint.enable": false,
