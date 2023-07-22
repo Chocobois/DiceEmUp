@@ -3,7 +3,7 @@
 	"title": "Fire and Dice",
 	"description": "Dice up the competition with some dragon dice!",
 	"itch": {
-		"upload": false,
+		"upload": true,
 		"username": "golen",
 		"game": "fire-and-dice"
 	}
