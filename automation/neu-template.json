@@ -28,14 +28,15 @@
 			"maximize": false,
 			"hidden": false,
 			"resizable": true,
-			"exitProcessOnClose": true
+			"exitProcessOnClose": true,
+			"useSavedState": false
 		}
 	},
 	"cli": {
 		"binaryName": "chocobois-jam-template",
 		"resourcesPath": "/dist/",
 		"clientLibrary": "/src/neutralino.js",
-		"binaryVersion": "4.13.0",
-		"clientVersion": "3.11.0"
+		"binaryVersion": "4.12.0",
+		"clientVersion": "3.10.0"
 	}
 }
