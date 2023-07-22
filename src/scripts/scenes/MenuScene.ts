@@ -1,7 +1,7 @@
 import { BaseScene } from "./BaseScene";
 import { RoundRectangle } from "../components/RoundRectangle";
 import { Music } from "./../components/Music";
-
+import { version } from "@/version.json";
 
 const creditsLeft = `GMTK Game Jam 2022
 
@@ -40,6 +40,7 @@ export class MenuScene extends BaseScene {
 	public title: Phaser.GameObjects.Text;
 	public subtitle: Phaser.GameObjects.Text;
 	public tap: Phaser.GameObjects.Text;
+	public version: Phaser.GameObjects.Text;
 
 	public musicTitle: Phaser.Sound.WebAudioSound;
 	public select: Phaser.Sound.WebAudioSound;
@@ -126,6 +127,13 @@ export class MenuScene extends BaseScene {
 		credits2.setLineSpacing(0);
 		this.credits.add(credits2);
 
+		this.version = this.createText(4, this.H, 12, '#c2185b', version);
+		this.version.setOrigin(0, 1);
+		this.version.setAlpha(0);
+		this.version.setStroke('#FFF', 4);
+		this.version.setLineSpacing(-18);
+		this.version.setPadding(2);
+		this.version.setVisible(false);
 
 		// Music
 
@@ -183,6 +191,7 @@ export class MenuScene extends BaseScene {
 
 			if (this.credits.visible) {
 				this.credits.alpha += 0.02 * (1 - this.credits.alpha);
+				this.version.alpha += 0.02 * (1 - this.version.alpha);
 			}
 		}
 		else {
@@ -242,6 +251,7 @@ export class MenuScene extends BaseScene {
 		if (bar >= 4) {
 			this.subtitle.setVisible(true);
 			this.credits.setVisible(true);
+			this.version.setVisible(true);
 		}
 	}
 
