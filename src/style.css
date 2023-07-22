@@ -1,4 +1,10 @@
-* { margin: 0; padding: 0;}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  user-select: none;
+}
 
 html, body {
 	width: 100%;
@@ -20,11 +26,6 @@ body {
 	color: #eee;
 }
 
-canvas {
-	display: block;
-	margin: auto;
-}
-
 .fontPreloader {
 	display: flex;
   justify-content: center;
@@ -37,31 +38,6 @@ canvas {
   white-space: nowrap;
 }
 
-.fontGame	{ font-family: 'Fredoka One', sans-serif; }
-
-/* fredoka-one-regular - latin */
-@font-face {
-  font-family: 'Fredoka One';
-  font-style: normal;
-  font-weight: 400;
-  src: local(''),
-       url('./fonts/fredoka-one-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('./fonts/fredoka-one-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-vite-plugin-checker-error-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100vw;
-  height: 60vh;
-  min-height: 30rem;
-  background-color: rgba(0,0,0,0.7);
-  overflow: auto;
-}
-
-@media (max-height: 30rem) {
-  vite-plugin-checker-error-overlay {
-    bottom: initial;
-    top: 0;
-  }
+body:has(canvas) .fontPreloader {
+  visibility: hidden;
 }

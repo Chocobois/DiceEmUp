@@ -1,3 +1,5 @@
+import { loadFont } from '@/assets';
+
 /* Interface */
 
 interface Asset {
@@ -517,6 +519,9 @@ const audios: Audio[] = [
 	{ key: "c_swirl_cup_single_short_3", path: c_swirl_cup_single_short_3, volume: 1 },
 ];
 
+
+
+await loadFont('fredoka-one-v13-latin-regular', 'Game Font');
 
 /* Export */
 

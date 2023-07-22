@@ -1,26 +1,25 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "ES2015",
-
+    "target": "ES2022",
+    "module": "ESNext",
     "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-
-    "allowJs": true,
-    "allowUnreachableCode": false,
-    "noImplicitAny": false,
-    "sourceMap": true,
-    "strictPropertyInitialization": false,
-    "noEmit": true,
-
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
-
-    "moduleResolution": "node",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "removeComments": true,
+    "stripInternal":true,
+    "allowJs": true,
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false,
+    "baseUrl": ".",
     "paths": {
-      "/*": ["./src/*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "typings"]
+  "include": ["src", "typings"],
+  "exclude": ["node_modules"]
 }

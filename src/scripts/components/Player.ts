@@ -43,7 +43,7 @@ export class Player extends Phaser.GameObjects.Container {
 	private inputVec: Phaser.Math.Vector2; // Just used for keyboard -> vector
 	private touchPos: Phaser.Math.Vector2;
 	public velocity: Phaser.Math.Vector2;
-	private border: { [key: string]: number }; 
+	private border: { [key: string]: number };
 
 	// Health
 	public bodyArea: Phaser.Geom.Circle;
@@ -56,6 +56,7 @@ export class Player extends Phaser.GameObjects.Container {
 
 	constructor(scene: GameScene, x: number, y: number) {
 		super(scene, x, y);
+		this.scene = scene;
 
 		// Graphics
 		/*

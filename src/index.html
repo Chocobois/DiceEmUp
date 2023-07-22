@@ -1,40 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta http-equiv="Content-Security-Policy" content="
-		default-src 'none';
-		script-src 'self' 'unsafe-eval';
-		connect-src 'self';
-		img-src 'self' data: blob:;
-		style-src 'self';
-		font-src 'self';
-		media-src 'self';
-		manifest-src 'self';
-	">
-	<meta property="og:title" content="Fire and Dice" />
-	<meta property="og:description" content="Dice up the competition with some dragon dice! Made for GMTK Game Jam 2022." />
+	<meta charset="UTF-8" />
+	<base href="./">
+
+	<meta property="og:title" content="%VITE_GAME_TITLE% by %VITE_GAME_TEAM%">
+	<meta property="og:description" content="%VITE_GAME_DESCRIPTION%">
 	<meta property="og:image" content="./CoverArtTitle.png" />
 	<meta property="og:url" content="https://chocobois.github.io">
 
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="https://chocobois.github.io">
 	<meta name="twitter:creator" content="@Golenchu">
-	<meta name="twitter:title" content="Fire and Dice">
-	<meta name="twitter:description" content="Dice up the competition with some dragon dice! Made for GMTK Game Jam 2022.">
+	<meta name="twitter:title" content="%VITE_GAME_TITLE% by %VITE_GAME_TEAM%">
+	<meta name="twitter:description" content="%VITE_GAME_DESCRIPTION%">
 	<meta name="twitter:image" content="./CoverArtTitle.png">
 
-	<title>Fire and Dice</title>
+	<title>%VITE_GAME_TEAM% - %VITE_GAME_TITLE%</title>
+	<link rel="icon" type="image/png" href="./icon.png" />
 	<link rel="stylesheet" href="./style.css">
 	<script src="./game.ts" defer type="module"></script>
 	<script src="./neu-main.js" type="module"></script>
 </head>
 <body>
-	<!-- Font preloading for Phaser -->
 	<p class="fontPreloader fontGame">Loading Bundle</p>
-
-	<!-- <script src="game.ts"></script> -->
 </body>
 </html>
