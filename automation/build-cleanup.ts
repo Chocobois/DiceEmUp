@@ -1,6 +1,7 @@
 import { PluginOption } from 'vite';
 import { rimrafSync } from 'rimraf';
-import { build_path } from './util/constants';
+import { writeFileSync } from 'fs';
+import { build_path, title_dashed } from './util/constants';
 
 export default function buildCleanup() {
 	return {
@@ -9,6 +10,7 @@ export default function buildCleanup() {
 		enforce: 'post',
 		closeBundle: () => {
 			rimrafSync(build_path);
+			writeFileSync('./dist/meta.json', JSON.stringify({title_dashed}));
 		},
 	} as PluginOption;
 }
