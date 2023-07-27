@@ -6,5 +6,11 @@
 		"upload": true,
 		"username": "golen",
 		"game": "fire-and-dice"
+	},
+	"neutralino": {
+		"allow": [
+			"app.exit",
+			"window.center"
+		]
 	}
 }

@@ -4,13 +4,15 @@ import zip from 'vite-plugin-zip-pack';
 import checker from 'vite-plugin-checker';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import getGitVersion from './automation/git-version';
+import preImageOptimizer from './automation/pre-image-optimizer';
 import neuBuild from './automation/neu-build';
+import neuInject from './automation/neu-inject';
 import buildWinApp from './automation/win-bundle';
 import buildMacApp from './automation/mac-bundle';
 import buildLinuxApp from './automation/linux-bundle';
 import buildCleanup from './automation/build-cleanup';
 
-import { title, team, description, title_dashed } from './automation/util/constants';
+import { title, team, description, title_dashed } from './automation/constants';
 
 export default () => {
 	process.env.VITE_GAME_TITLE = title;
@@ -26,7 +28,9 @@ export default () => {
 			checker({
 				typescript: true,
 			}),
+			preImageOptimizer(),
 			neuBuild(),
+			neuInject(),
 			buildWinApp(),
 			buildMacApp(),
 			buildLinuxApp(),
