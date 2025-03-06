@@ -244,6 +244,7 @@ export class GameScene extends BaseScene {
 				{ key: 'dragon_idle', frame: 2, duration: 600 },
 				{ key: 'dragon_idle', frame: 1, duration: 400 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 		this.anims.create({
@@ -252,6 +253,7 @@ export class GameScene extends BaseScene {
 				{ key: 'dragon_prepare', frame: 0, duration: 300 },
 				{ key: 'dragon_prepare', frame: 1, duration: 400 },
 			],
+			frameRate: undefined,
 		});
 		this.anims.create({
 			key: 'dragon_throw',
@@ -260,12 +262,14 @@ export class GameScene extends BaseScene {
 				{ key: 'dragon_throw', frame: 1, duration: 300 },
 				{ key: 'dragon_throw', frame: 2, duration: 200 },
 			],
+			frameRate: undefined,
 		});
 		this.anims.create({
 			key: 'dragon_hurt',
 			frames: [
 				{ key: 'dragon_hurt', frame: 0, duration: 1500 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 
@@ -275,6 +279,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_peasant', frame: 0, duration: 500 },
 				{ key: 'enemy_peasant', frame: 1, duration: 500 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 		this.anims.create({
@@ -283,6 +288,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_peasant', frame: 2, duration: 100 },
 				{ key: 'enemy_peasant', frame: 0, duration: 100 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 		this.anims.create({
@@ -292,6 +298,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_peasant', frame: 2, duration: 100 },
 				{ key: 'enemy_peasant', frame: 3, duration: 100 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 
@@ -301,6 +308,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_squire', frame: 0, duration: 500 },
 				{ key: 'enemy_squire', frame: 1, duration: 500 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 		this.anims.create({
@@ -309,6 +317,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_squire', frame: 2, duration: 100 },
 				{ key: 'enemy_squire', frame: 0, duration: 100 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 		this.anims.create({
@@ -318,6 +327,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_squire', frame: 2, duration: 100 },
 				{ key: 'enemy_squire', frame: 3, duration: 100 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 
@@ -327,6 +337,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_tank', frame: 0, duration: 500 },
 				{ key: 'enemy_tank', frame: 1, duration: 500 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 		this.anims.create({
@@ -335,6 +346,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_tank', frame: 2, duration: 100 },
 				{ key: 'enemy_tank', frame: 0, duration: 100 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 		this.anims.create({
@@ -345,6 +357,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_tank', frame: 3, duration: 60 },
 				{ key: 'enemy_tank', frame: 4, duration: 120 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 
@@ -354,14 +367,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_trojan', frame: 0, duration: 500 },
 				{ key: 'enemy_trojan', frame: 1, duration: 500 },
 			],
-			repeat: -1
-		});
-		this.anims.create({
-			key: 'enemy_trojan_walk',
-			frames: [
-				{ key: 'enemy_trojan', frame: 2, duration: 100 },
-				{ key: 'enemy_trojan', frame: 0, duration: 100 },
-			],
+			frameRate: undefined,
 			repeat: -1
 		});
 		this.anims.create({
@@ -371,6 +377,7 @@ export class GameScene extends BaseScene {
 				{ key: 'enemy_trojan', frame: 1, duration: 100 },
 				{ key: 'enemy_trojan', frame: 0, duration: 100 },
 			],
+			frameRate: undefined,
 			repeat: -1
 		});
 	}

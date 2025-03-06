@@ -1,4 +1,4 @@
-export interface Asset {
+export interface Image {
 	key: string;
 	path: string;
 }
@@ -17,31 +17,31 @@ export interface Audio {
 	rate?: number;
 }
 
-const imageGlob = import.meta.glob('./images/**/*.png', { as: 'url', eager: true });
-export const image = (path: string, key: string): Asset => {
+const imageGlob = import.meta.glob<string>('./images/**/*.png', {query: '?url', import: 'default', eager: true});
+export const image = (path: string, key: string): Image => {
 	return { key, path: imageGlob[`./images/${path}.png`] };
-};
+}
 
 export const spritesheet = (path: string, key: string, width: number, height: number): SpriteSheet => {
 	return { key, width, height, path: imageGlob[`./images/${path}.png`] };
 };
 
-const musicGlob = import.meta.glob('./music/**/*.mp3', { as: 'url', eager: true });
+const musicGlob = import.meta.glob<string>('./music/**/*.mp3', {query: '?url', import: 'default', eager: true});
 export const music = (path: string, key: string, volume?: number, rate?: number): Audio => {
 	return { key, volume, rate, path: musicGlob[`./music/${path}.mp3`] };
-};
+}
 
-const audioGlob = import.meta.glob('./sounds/**/*.mp3', { as: 'url', eager: true });
+const audioGlob = import.meta.glob<string>('./sounds/**/*.mp3', {query: '?url', import: 'default', eager: true});
 export const sound = (path: string, key: string, volume?: number, rate?: number): Audio => {
 	return { key, volume, rate, path: audioGlob[`./sounds/${path}.mp3`] };
-};
+}
 
-const fontGlob = import.meta.glob('./fonts/**/*.woff2', { as: 'url', eager: true });
+const fontGlob = import.meta.glob<string>('./fonts/**/*.woff2', {query: '?url', import: 'default', eager: true});
 export const loadFont = async (path: string, name: string) => {
-	const face = new FontFace(name, `url(${fontGlob[`./fonts/${path}.woff2`]})`, { style: 'normal', weight: '400' });
+	const face = new FontFace(name, `url(${fontGlob[`./fonts/${path}.woff2`]})`, {style: 'normal', weight: '400'});
 	await face.load();
 	document.fonts.add(face);
-};
+}
 
 // Return interpolated color between two color1 and color2 at value (0-1)
 export function interpolateColor(color1: number, color2: number, value: number): number {

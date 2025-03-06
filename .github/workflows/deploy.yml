@@ -5,45 +5,60 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
-    name: Build
+    name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          lfs: true
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install dependencies
         run: npm install && sudo apt install genisoimage
 
       - name: Load game.config.json
-        uses: antifree/json-to-variables@v1.0.1
+        uses: antifree/json-to-variables@v1.1.2
         with:
-          filename: 'game.config.json'
+          filename: "game.config.json"
           prefix: game
 
       - name: Build project
         run: npm run build
 
       - name: Load meta.json
-        uses: antifree/json-to-variables@v1.0.1
+        uses: antifree/json-to-variables@v1.1.2
         with:
-          filename: 'dist/meta.json'
+          filename: "dist/meta.json"
           prefix: meta
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/web
+          path: ./dist/web
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Create release
         uses: "marvinpinto/action-automatic-releases@latest"
