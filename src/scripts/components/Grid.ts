@@ -34,8 +34,9 @@ export class Grid extends Phaser.GameObjects.Container {
 		this.scene.add.existing(this);
 
 
-		this.bg = this.scene.add.image(GRID_LEFT-9, GRID_TOP-9, 'board_border');
+		this.bg = this.scene.add.image(GRID_LEFT-18, GRID_TOP-18, 'board_border');
 		this.bg.setOrigin(0);
+		this.bg.setScale(2);
 		// this.bg.setScale((CELL_WIDTH*GRID_COLS + 22) / this.bg.width);
 		this.add(this.bg);
 
@@ -76,17 +77,17 @@ export class Grid extends Phaser.GameObjects.Container {
 		this.add(tile2);
 		this.gridHighlights[j][i] = tile2;
 
-		const text = this.scene.createText(cell.x+cell.width, cell.y, 18, "#B71C1C", "")
-		text.setStroke("#FFFFFF", 3);
+		const text = this.scene.createText(cell.x+cell.width, cell.y, 36, "#B71C1C", "")
+		text.setStroke("#FFFFFF", 6);
 		text.setOrigin(1.05, 0.15);
 		this.add(text);
 		this.gridText[j][i] = text;
 
 		if (this.isStorage({i, j})) {
 			tile2.setAlpha(0);
-			text.setFontSize(12);
+			text.setFontSize(24);
 			text.setColor("#FFFFFF");
-			text.setStroke("#222229", 3);
+			text.setStroke("#222229", 6);
 			text.setText("Storage");
 			text.setOrigin(0.5, 0.5);
 			text.x -= cell.width/2;
@@ -275,7 +276,7 @@ export class Grid extends Phaser.GameObjects.Container {
 				const scaledDamage = Math.min(damage, 10) / 10;
 
 				if (damage > 0) {
-					this.scene.particles.createExplosion(cell.cx, cell.cy + 0.4*cell.height, 0.5 + 0.6 * scaledDamage, 0.5 + 0.3 * scaledDamage, (i+j)%2 == 0);
+					this.scene.particles.createExplosion(cell.cx, cell.cy + 0.4*cell.height, 1.0 + 1.2 * scaledDamage, 0.5 + 0.3 * scaledDamage, (i+j)%2 == 0);
 				}
 			}
 		}
@@ -303,7 +304,7 @@ export class Grid extends Phaser.GameObjects.Container {
 		// Place enemy right of screen
 		if (moveRight) {
 			const cell = this.getCell(coord);
-			enemy.x = this.scene.W + 20;
+			enemy.x = this.scene.W + 40;
 			enemy.y = cell.cy;
 		}
 

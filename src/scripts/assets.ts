@@ -129,7 +129,7 @@ const spritesheets: SpriteSheet[] = [
 	{ key: "meme_explosion",	path: meme_explosion,	width: 200,	height: 282 },
 
 	// UI
-	{ key: "attack_button",			path: attack_button,		width: 532,	height: 219 },
+	{ key: "attack_button",			path: attack_button,		width: 512,	height: 256 },
 	{ key: "attack_button_fire",	path: attack_button_fire,	width: 512,	height: 256 },
 	{ key: "music",					path: music,				width: 300,	height: 300 },
 	{ key: "audio",					path: audio,				width: 300,	height: 300 },

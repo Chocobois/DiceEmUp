@@ -19,7 +19,6 @@ interface EnemyBehaviour {
 	move: (coord: Coord, moves: number) => Coord;
 	spawn: (scene: GameScene, grid: Grid, y?: number) => Enemy[];
 	customSpawn?: (scene: GameScene, grid: Grid, coord: Coord) => Enemy[];
-	tint: number;
 	minHealth: number;
 	maxHealth: number;
 	score: number;
@@ -44,7 +43,6 @@ const normalSpawn = (type: EnemyType) => {
 
 EnemyKinds.set(EnemyType.SQUIRE, {
 	type: EnemyType.SQUIRE,
-	tint: 0xFFFFFF,
 	minHealth: 5,
 	maxHealth: 9,
 	score: 10,
@@ -204,14 +202,13 @@ export class Enemy extends Phaser.GameObjects.Container {
 		// Create player sprite
 		this.sprite = scene.add.sprite(0, 0.42*CELL_HEIGHT, behaviour.sprite, 0);
 		this.sprite.setScale(behaviour.scale*CELL_HEIGHT / this.sprite.height);
-		this.sprite.setTint(behaviour.tint);
 		this.sprite.setOrigin(0.6, 1.0);
 		// this.sprite.setScale(0.25);
 		this.add(this.sprite);
 
-		this.text = scene.createText(24, 17, 25, "#303F9F", this.health.toString());
+		this.text = scene.createText(48, 34, 50, "#303F9F", this.health.toString());
 		this.text.setOrigin(0.6);
-		this.text.setStroke("#FFFFFF", 5);
+		this.text.setStroke("#FFFFFF", 8);
 		this.add(this.text);
 	}
 
@@ -224,12 +221,12 @@ export class Enemy extends Phaser.GameObjects.Container {
 		this.hurtTimer -= deltaMs;
 		if (this.hurtTimer > 0 || !this.alive) {
 			let blink = (Math.sin(0.03*timeMs) > 0);
-			this.sprite.setTint(blink ? 0xFF7777 : this.behaviour.tint);
+			this.sprite.setTint(blink ? 0xFF7777 : 0xFFFFFF);
 			this.sprite.setAlpha(0.5);
 			this.sprite.setOrigin(0.6 + 0.05 * Math.sin(35*timeMs/1000), this.sprite.originY);
 		}
 		else {
-			this.sprite.setTint(this.behaviour.tint);
+			this.sprite.setTint(0xFFFFFF);
 			this.sprite.setAlpha(1);
 		}
 
@@ -246,7 +243,7 @@ export class Enemy extends Phaser.GameObjects.Container {
 			// this.setAlpha(1 - deathEase);
 
 			let blink = (Math.sin(50*timeMs/1000) > 0);
-			this.sprite.setTint(blink ? 0xFFBBBB : this.behaviour.tint);
+			this.sprite.setTint(blink ? 0xFFBBBB : 0xFFFFFF);
 
 			// End prematurely
 			if (this.deathTimer > 0.95 * this.deathDuration) {

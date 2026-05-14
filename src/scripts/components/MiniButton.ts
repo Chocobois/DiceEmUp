@@ -15,14 +15,14 @@ export class MiniButton extends BaseButton {
 		this.scene = scene;
 		scene.add.existing(this);
 
-		const size = 35;
+		const size = 70;
 		this.active = true;
 
-		this.outerCircle = this.scene.add.ellipse(0, 0, size+8, size+8, 0x111111);
+		this.outerCircle = this.scene.add.ellipse(0, 0, size+16, size+16, 0x111111);
 		this.bindInteractive(this.outerCircle, false);
 		this.add(this.outerCircle);
 
-		this.circle = this.scene.add.ellipse(0, 0, size+4, size+4, 0xf28198);
+		this.circle = this.scene.add.ellipse(0, 0, size+8, size+8, 0xf28198);
 		this.add(this.circle);
 
 		this.sprite = scene.add.sprite(0, 0, key, this.active ? 0 : 1);

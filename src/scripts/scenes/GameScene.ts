@@ -1,19 +1,15 @@
 import { BaseScene } from "./BaseScene";
-import { RoundRectangle } from "../components/RoundRectangle";
 import { Grid } from "./../components/Grid";
 import { Music } from "./../components/Music";
-// import { Background } from "../components/Background";
 import { UI } from "../components/UI";
 import { Particles } from "../components/Particles";
-import { Player } from "../components/Player";
 import { Enemy, EnemyKinds, EnemyType } from "../components/Enemy";
 import { Dice, DiceStyle, diceStyles } from "../components/Dice";
 import { AttackButton } from "../components/AttackButton";
 import { MiniButton } from "../components/MiniButton";
 import { Dragon } from "../components/Dragon";
 import { GrayScalePostFilter } from "../pipelines/GrayScalePostFilter";
-import { interpolateColor } from "../utils";
-import { GRID_COLS, GRID_ROWS, GRID_LEFT, GRID_TOP, CELL_WIDTH, CELL_HEIGHT } from "../constants";
+import { GRID_ROWS, GRID_LEFT, GRID_TOP, CELL_WIDTH } from "../constants";
 
 import level from "../components/Levels";
 
@@ -32,7 +28,6 @@ export class GameScene extends BaseScene {
 	public state: State;
 
 	// Background
-	// public background: Background;
 	public bg_shadow: Phaser.GameObjects.Image;
 	public grid: Grid;
 	public dices: Dice[];
@@ -47,14 +42,9 @@ export class GameScene extends BaseScene {
 	private ui: UI;
 	public overlayText: Phaser.GameObjects.Text;
 
-	// Enemies
-	// private enemies: Enemy[];
-
 	// Particles
 	public particles: Particles;
 
-	// public sounds: Map<string, Phaser.Sound.BaseSound>;
-	// public sounds: {[key: string]: Phaser.Sound.WebAudioSound};
 	public music: Music;
 	public music_light: Music;
 	public music_isFull: Boolean;
@@ -71,9 +61,6 @@ export class GameScene extends BaseScene {
 
 	constructor() {
 		super({key: "GameScene"});
-	}
-
-	init(data): void {
 	}
 
 	create(): void {
@@ -94,7 +81,7 @@ export class GameScene extends BaseScene {
 		this.containToScreen(fg);
 		fg.setDepth(1000);
 
-		this.dragon = new Dragon(this, -2, this.CY);
+		this.dragon = new Dragon(this, -4, this.CY);
 		this.dragon.setDepth(10);
 		this.dragon.on('throw', this.onDragonThrow, this);
 		this.dragon.on('death', this.onDragonDeath, this);
@@ -105,17 +92,17 @@ export class GameScene extends BaseScene {
 		this.dices = [];
 		this.enemies = [];
 
-		this.attackButton = new AttackButton(this, GRID_LEFT+CELL_WIDTH*(GRID_ROWS+1)/2, GRID_TOP - 60);
+		this.attackButton = new AttackButton(this, GRID_LEFT+CELL_WIDTH*(GRID_ROWS+1)/2, GRID_TOP - 120);
 		this.attackButton.setVisible(false);
 		this.attackButton.on('click', this.onAttack, this);
 
-		const bsize = 35;
+		const bsize = 70;
 		this.musicButton = new MiniButton(this, this.W-2.5*bsize, 0.8*bsize, 'music');
 		this.musicButton.on('click', (active: boolean) => {
 			this.musicButton.toggle();
 			this.music.volume 			= (this.musicButton.active ? (this.music_isFull ? 0.25 : 0.0001) : 0);
 			this.music_light.volume = (this.musicButton.active ? (this.music_isFull ? 0.0001 : 0.25) : 0);
-			this.ambience.volume = (this.musicButton.active ? 0.35 : 0);
+			this.ambience.volume = (this.musicButton.active ? 0.3 : 0);
 		}, this);
 		this.audioButton = new MiniButton(this, this.W-bsize, 0.8*bsize, 'audio');
 		this.audioButton.on('click', (active: boolean) => {
@@ -136,17 +123,11 @@ export class GameScene extends BaseScene {
 		this.ui = new UI(this);
 		this.ui.setDepth(10000);
 
-		this.overlayText = this.createText(this.W/2 + 0.5, this.H/2 + 0.5, 32, "#fff", "Overlay");
+		this.overlayText = this.createText(this.CX + 0.5, this.CY + 0.5, 64, "#fff", "Overlay");
 		this.overlayText.setOrigin(0.5);
-		this.overlayText.setStroke("#000", 5);
+		this.overlayText.setStroke("#000", 10);
 		this.overlayText.setDepth(20);
 		this.overlayText.setAlpha(0);
-
-		// Characters
-		// this.player = new Player(this, this.CX, this.CY);
-		// this.player.setDepth(PLAYER_LAYER);
-
-		// this.enemies = [];
 
 		this.particles = new Particles(this);
 		this.particles.setDepth(1000);
@@ -155,34 +136,13 @@ export class GameScene extends BaseScene {
 		// Touch controls
 		this.input.addPointer(2);
 
-		this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
-			// if (!this.player.isTouched) {
-			// 	this.player.touchStart(pointer.x, pointer.y);
-			// 	touchId = pointer.id;
-			// 	touchButton = pointer.button;
-			// }
-			// else if (this.player.isTouched && !this.player.isTapped) { // Allow second touch to toggle
-			// 	this.onDayToggle();
-			// }
-		});
-		this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
-			// if (touchId == pointer.id) {
-			// 	this.player.touchDrag(pointer.x, pointer.y);
-			// }
-		});
 		this.input.on('pointerup', (pointer: Phaser.Input.Pointer) => {
 			for (let dice of this.dices) {
 				if (dice.dragging) {
 					dice.onRelease();
 				}
 			}
-			// if (touchId == pointer.id && touchButton == pointer.button) {
-			// 	// this.ui.debug.setText(`${new Date().getTime()} - id:${pointer.id} button:${pointer.button}`);
-			// 	this.player.touchEnd(pointer.x, pointer.y);
-			// }
 		});
-
-		// this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE).on('down', this.onDayToggle, this);
 
 
 		// Sounds
@@ -409,7 +369,7 @@ export class GameScene extends BaseScene {
 	}
 
 	addDice(diceStyle: DiceStyle, diceValue: number) {
-		const dice = new Dice(this, 300, this.CY, diceStyle, diceValue);
+		const dice = new Dice(this, 600, this.CY, diceStyle, diceValue);
 		this.dices.push(dice);
 
 		const coord = this.grid.getRandomFree();
@@ -444,7 +404,7 @@ export class GameScene extends BaseScene {
 
 		// Explode dice
 		this.flash(3000, 0xFF9977, 0.6);
-		this.shake(500, 4, 0);
+		this.shake(500, 8, 0);
 		this.grid.explodeGrid();
 		for (const dice of this.dices) {
 			if (!dice.inStorage) {
@@ -487,7 +447,7 @@ export class GameScene extends BaseScene {
 		if (this.enemies.length > 0) {
 			this.grid.moveEnemies();
 		} else {
-			if(level.length <= this.round) {
+			if (this.round > level.length) {
 				this.addScore(100);
 				this.overlayText.setColor("#fd0");
 				this.overlayText.setText("Perfect Clear!");
@@ -503,7 +463,6 @@ export class GameScene extends BaseScene {
 				this.tweens.add({
 					targets: this.overlayText,
 					delay: 1400,
-					duratioonEnemyAttackn: 800,
 					ease: "Linear",
 					alpha: { from: 1, to: 0 }
 				})
@@ -554,7 +513,7 @@ export class GameScene extends BaseScene {
 				}
 
 			}
-		} while (this.enemies.filter(enemy => enemy.alive).length < 1);
+		} while (this.enemies.filter(enemy => enemy.alive).length == 0);
 
 		for (let enemy of this.enemies) {
 			enemy.playWalk();
@@ -629,7 +588,7 @@ export class GameScene extends BaseScene {
 		)
 		this.generateDice();
 
-		this.shake(300, 2, 0);
+		this.shake(300, 4, 0);
 
 		// Show attack button after a while
 		this.addEvent(1800, this.onPlayerTurn, this);
@@ -638,12 +597,6 @@ export class GameScene extends BaseScene {
 	onPlayerTurn() {
 		this.state = State.MoveDice;
 
-		this.tweens.add({
-			targets: this.attackButton.fire,
-			scaleY: { from: 0, to: 0.6 },
-			duration: 200,
-			ease: "Cubic.Out"
-		});
 		this.attackButton.setVisible(true);
 		this.sound.play(`m_fire_ignite_${Phaser.Math.Between(1, 3)}`, {volume: 0.85});
 	}
@@ -695,7 +648,7 @@ export class GameScene extends BaseScene {
 		// this.introPlaying = true;
 		// this.sounds.playerDeath.play();
 
-		// this.shake(1400, 8, 2);
+		// this.shake(1400, 16, 2);
 	}
 
 

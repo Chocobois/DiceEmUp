@@ -4,9 +4,9 @@ import { BaseButton } from "./BaseButton";
 export class AttackButton extends BaseButton {
 	public scene: GameScene;
 
-	public fire: Phaser.GameObjects.Sprite;
-	public sprite: Phaser.GameObjects.Sprite;
-	public text: Phaser.GameObjects.Text;
+	private fire: Phaser.GameObjects.Sprite;
+	private sprite: Phaser.GameObjects.Sprite;
+	private text: Phaser.GameObjects.Text;
 
 	public enabled: boolean;
 
@@ -17,19 +17,19 @@ export class AttackButton extends BaseButton {
 
 		this.enabled = true;
 
-		this.fire = scene.add.sprite(0, -30, 'attack_button_fire', 0);
-		this.fire.setScale(0.6);
+		this.fire = scene.add.sprite(0, -60, "attack_button_fire", 0);
+		this.fire.setScale(1.2);
 		this.add(this.fire);
 
-		this.sprite = scene.add.sprite(0, 0, 'attack_button', 0);
-		this.sprite.setScale(0.3);
+		this.sprite = scene.add.sprite(0, 0, "attack_button", 0);
+		this.sprite.setScale(0.62);
 		// this.sprite.setTint(0xFFCCCC);
 		this.bindInteractive(this.sprite, false);
 		this.add(this.sprite);
 
-		this.text = scene.createText(0.5, 0.5, 20, "#FFF", "Attack"); // Subpixel blur fix
+		this.text = scene.createText(0, 0, 48, "#fff", "Attack"); // Subpixel blur fix
 		this.text.setOrigin(0.5);
-		this.text.setStroke("#000", 4);
+		this.text.setStroke("#000", 8);
 		this.add(this.text);
 
 		/*
@@ -51,8 +51,21 @@ export class AttackButton extends BaseButton {
 	}
 
 	update(timeMs: number, deltaMs: number) {
-		this.sprite.setScale(0.3 - 0.02 * this.holdSmooth);
-		this.fire.setFrame(Math.floor(10*timeMs/1000) % 8);
+		this.sprite.setScale(0.62 - 0.04 * this.holdSmooth);
+		this.fire.setFrame(Math.floor((10 * timeMs) / 1000) % 8);
 		this.sprite.setFrame(this.hold ? 1 : 0);
+	}
+
+	setVisible(value: boolean): this {
+		if (value) {
+			this.scene.tweens.add({
+				targets: this.fire,
+				scaleY: { from: 0, to: 1.2 },
+				duration: 200,
+				ease: Phaser.Math.Easing.Back.Out,
+			});
+		}
+
+		return super.setVisible(value);
 	}
 }

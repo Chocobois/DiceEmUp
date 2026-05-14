@@ -30,12 +30,12 @@ export class PreloadScene extends BaseScene {
 		let width = 0.5 * this.W;
 		let x = this.CX - width/2;
 		let y = this.CY;
-		let bg = this.add.rectangle(x, y, width, 4, 0x666666).setOrigin(0, 0.5);
-		let bar = this.add.rectangle(x, y, 1, 8, 0xDDDDDD).setOrigin(0, 0.5);
+		let bg = this.add.rectangle(x, y, width, 8, 0x666666).setOrigin(0, 0.5);
+		let bar = this.add.rectangle(x, y, 2, 16, 0xDDDDDD).setOrigin(0, 0.5);
 
 		// Loading text
-		let text = this.createText(x, y, 16, "#DDDDDD", "Loading...").setOrigin(0, 1.5);
-		this.createText(5, 5, 16, '#DDDDDD', `${title} ${version}`).setOrigin(0, 0);
+		this.createText(x, y, 32, "#DDDDDD", "Loading...").setOrigin(0, 1.5);
+		this.createText(this.W - 10, this.H - 10, 32, '#DDDDDD', version).setOrigin(1);
 
 		// Listener
 		this.load.on("progress", (progress) => {
